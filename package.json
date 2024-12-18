@@ -2,14 +2,25 @@
   "name": "autospace",
   "version": "1.0.0",
   "description": "",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "apps/*",
+      "libs/*"
+    ],
+    "nohoist": [
+      "**/@nestjs",
+      "**/@nestjs/**"
+    ]
+  },
   "scripts": {
     "format": "prettier  \"{apps,libs}/**/*.{ts,tsx,js,json}\" --ignore-path .gitignore",
-    "format:check": "pnpm format --check",
-    "format:write": "pnpm format --write",
-    "tsc": "pnpm --parallel -r run tsc",
-    "lint": "pnpm --parallel -r run lint",
-    "build": "pnpm --parallel -r run build",
-    "validate": "pnpm format:write && pnpm tsc && pnpm lint && pnpm build",
+    "format:check": "yarn format --check",
+    "format:write": "yarn format --write",
+    "tsc": "yarn nx run-many -t tsc",
+    "lint": "yarn nx run-many -t lint",
+    "build": "yarn nx run-many -t build",
+    "validate": "yarn format:write && yarn tsc && yarn lint && yarn build",
     "prepare": "husky install"
   },
   "keywords": [],
@@ -17,10 +28,10 @@
   "license": "ISC",
   "devDependencies": {
     "eslint": "^9.16.0",
+    "husky": "^8.0.0",
+    "nx": "20.2.2",
     "prettier": "^3.0.0",
     "typescript": "^5.7.2",
-    "husky": "^8.0.0"
-  },
-  "packageManager": "pnpm@9.15.0+sha512.76e2379760a4328ec4415815bcd6628dee727af3779aaa4c914e3944156c4299921a89f976381ee107d41f12cfa4b66681ca9c718f0668fa0831ed4c6d8ba56c",
-  "dependencies": {}
+    "webpack": "^5.97.1"
+  }
 }
