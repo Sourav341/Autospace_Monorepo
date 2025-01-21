@@ -11,7 +11,7 @@ import { fetchGraphQL } from '../fetch'
 import * as jwt from 'jsonwebtoken'
 import { JWT } from 'next-auth/jwt'
 
-const MAX_AGE = 1 * 24 * 60 * 60
+const MAX_AGE = 30 * 24 * 60 * 60 //1 month
 
 export const authOptions: NextAuthOptions = {
   // Configure authentication providers
@@ -20,11 +20,11 @@ export const authOptions: NextAuthOptions = {
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
-      authorization: {
-        params: {
-          scope: 'openid profile',
-        },
-      },
+      // authorization: {
+      //   params: {
+      //     scope: 'openid profile',
+      //   },
+      // },
     }),
     // Credentials provider configuration for email/password authentication
     CredentialsProvider({
