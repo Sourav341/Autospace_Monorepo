@@ -6,19 +6,11 @@
       "outputs": ["{projectRoot}/.next, build, dist"],
       "cache": true
     },
-    "dev": {
-      "dependsOn": ["^dev"]
-    },
-    "lint": {
-      "dependsOn": ["^lint"],
-      "cache": true
-    },
-    "tsc": {
-      "dependsOn": ["^tsc"],
-      "cache": true
-    }
+    "dev": { "dependsOn": ["^dev"] },
+    "lint": { "dependsOn": ["^lint"], "cache": true },
+    "tsc": { "dependsOn": ["^tsc"], "cache": true }
   },
   "defaultBase": "master",
   "nxCloudId": "6762aeb7b2448e57d4b98156",
-  "nxCloudAccessToken": "MTI0YWJmNjEtMmUzNi00YWY4LTk5YjMtMTA0NWEwZDU5ZWEwfHJlYWQtd3JpdGU="
+  "nxCloudAccessToken": "MGUxMDlmMjctOGYzNy00M2NlLTljYWUtZmEyNzgyOGU0OWUyfHJlYWQtd3JpdGU="
 }
