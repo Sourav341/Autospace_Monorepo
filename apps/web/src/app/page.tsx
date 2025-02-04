@@ -2,10 +2,25 @@
 'use client'
 
 import { useQuery } from '@apollo/client'
-import { CompaniesDocument } from '@autospace/network/src/gql/generated'
+import {
+  CompaniesDocument,
+  SearchGaragesDocument,
+} from '@autospace/network/src/gql/generated'
 
 export default function Home() {
   const { data, loading, error } = useQuery(CompaniesDocument)
+
+  const { data: garages } = useQuery(SearchGaragesDocument, {
+    variables: {
+      dateFilter: { end: '2025-01-27', start: '2025-01-21' },
+      locationFilter: {
+        ne_lat: 1,
+        ne_lng: 1,
+        sw_lat: -1,
+        sw_lng: -1,
+      },
+    },
+  })
 
   return (
     <main className=" p-8">
@@ -16,6 +31,12 @@ export default function Home() {
             <div>{company.description}</div>
             <div>{company.description}</div>
           </div>
+        ))}
+      </div>
+
+      <div>
+        {garages?.searchGarages.map((garage) => (
+          <pre key={garage.id}>{JSON.stringify(garage, null, 2)}</pre>
         ))}
       </div>
     </main>

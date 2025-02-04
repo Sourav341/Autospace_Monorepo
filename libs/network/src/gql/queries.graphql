@@ -9,7 +9,7 @@ mutation RegisterWithCredentials($registerWithCredentialsInput: RegisterWithCred
 }
 
 
-query Companies($distinct: [CompanyScalarFieldEnum!], $orderBy: [CompanyOrderByWithRelationInput!], $where: CompanyWhereInput, $cursor: CompanyWhereUniqueInput, $take: Int, $skip: Int) {
+query Companies($distinct: [CompanyScalarFieldEnum!], $orderBy: [CompanyOrderByWithRelationInput!], $where: CompanyWhereInput, $cursor: CompanyWhereUniqueInput, $take: Float, $skip: Float) {
   companies(distinct: $distinct, orderBy: $orderBy, where: $where, cursor: $cursor, take: $take, skip: $skip) {
     createdAt
     description
@@ -48,5 +48,36 @@ mutation RegisterWithProvider(
 ) {
   registerWithProvider(registerWithProviderInput: $registerWithProviderInput) {
     uid
+  }
+}
+
+query SearchGarages(
+  $dateFilter: DateFilterInput!
+  $locationFilter: LocationFilterInput!
+  $slotsFilter: SlotWhereInput
+  $garageFilter: GarageFilter
+) {
+  searchGarages(
+    dateFilter: $dateFilter
+    locationFilter: $locationFilter
+    slotsFilter: $slotsFilter
+    garageFilter: $garageFilter
+  ) {
+    id
+    address {
+      lat
+      lng
+      address
+    }
+    images
+    displayName
+    availableSlots(dateFilter: $dateFilter, slotsFilter: $slotsFilter) {
+      type
+      pricePerHour
+      count
+    }
+    verification {
+      verified
+    }
   }
 }
